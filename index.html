@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+   <title>Gasto Gasolina</title>
+</head>
+
+<body>
+
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      .container {
+         display: flex;
+         flex-direction: column;
+         padding: 10px;
+         align-items: center;
+         gap: 140px;
+         width: 100%;
+      }
+
+      .calculo {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 50%;
+      }
+
+      input {
+         border: .2em solid #000;
+         text-align: center;
+         padding: .5em;
+         width: 100%;
+         margin-bottom: .5em;
+      }
+
+      .botao {
+         display: flex;
+         justify-content: center;
+      }
+
+      .btn_calc {         
+         border: none;
+         padding: 10px;
+         background: none;
+         cursor: pointer;
+      }
+      .btn_calc i{
+         font-size: 60px;
+         color: #888;
+      }
+      .btn_calc:hover i{
+         color: #000;
+      }
+      .resultado {
+         width: 100%;
+      }
+
+      h1 {
+         text-align: center;
+         text-transform: uppercase;
+         background: #000;
+         color: #fff;
+      }
+   </style>
+
+   <h1>Quanto Vou Gastar ?</h1>
+   <hr>
+
+   <div class="container">
+      <div class="calculo">
+         <input type="text" name="km" id="km" placeholder="quantos km?">
+         <input type="text" name="ped" id="valor_ped" placeholder="valor do pedágio">
+         <input type="text" name="km_litro" id="km_litro" placeholder="quantos km por litro?">
+         <input type="text" name="gas" id="valor_gas" placeholder="valor da gasolina">
+
+         <div class="resultado">
+            <h1 style="font-size: 1em;">Gasto total R$: <span id="total"></span></h1>
+            <hr>
+         </div>
+
+         <div class="botao">
+            <button class="btn_calc">               
+                  <i class='bx bxs-calculator'></i>               
+            </button>
+         </div>
+
+      </div>
+   </div>
+
+   <script>
+      const btn_calc = document.querySelector('.btn_calc');
+      const total = document.querySelector('#total');
+      
+      btn_calc.addEventListener('click', calcular, false);
+      
+      function calcular(){
+         let km_litro = parseFloat(document.querySelector('#km_litro').value);
+         let valor_gas = parseFloat(document.querySelector('#valor_gas').value);
+         let km = parseFloat(document.querySelector('#km').value);
+         
+         let parcial = ((km / km_litro) * valor_gas)
+         let valor_ped = parseFloat(document.querySelector('#valor_ped').value);
+         
+         let valor_total = (parcial + valor_ped).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });         
+         total.textContent = valor_total
+      }
+
+
+   </script>
+</body>
+
+</html>
