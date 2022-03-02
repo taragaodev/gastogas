@@ -101,18 +101,22 @@
    <script>
       const btn_calc = document.querySelector('.btn_calc');
       const total = document.querySelector('#total');
+      const km_litro = document.querySelector('#km_litro');
+      const valor_gas = document.querySelector('#valor_gas');
+      const km = document.querySelector('#km');
+      const valor_ped = document.querySelector('#valor_ped');
       
       btn_calc.addEventListener('click', calcular, false);
       
       function calcular(){
-         let km_litro = parseFloat(document.querySelector('#km_litro').value);
-         let valor_gas = parseFloat(document.querySelector('#valor_gas').value);
-         let km = parseFloat(document.querySelector('#km').value);
+         let km_litro_1 = parseFloat(km_litro.value);
+         let valor_gas_1 = parseFloat(valor_gas.value);
+         let km_1 = parseFloat(km.value);
          
-         let parcial = ((km / km_litro) * valor_gas)
-         let valor_ped = parseFloat(document.querySelector('#valor_ped').value);
+         let parcial = ((km_1 / km_litro_1) * valor_gas_1)
          
-         let valor_total = (parcial + valor_ped).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });         
+         let valor_total = (parcial + parseFloat(valor_ped.value)).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });         
+
          total.textContent = valor_total
       }
 
